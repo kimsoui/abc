@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위 바위 보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #result {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>가위 바위 보</h1>
+    <p>이기면 홈페이지 주인에 관한 정보를 투척합니다. 무엇을 선택하시겠습니까?:</p>
+    <button onclick="play('바위')">바위</button>
+    <button onclick="play('보')">보</button>
+    <button onclick="play('가위')">가위</button>
+    <p id="result"></p>
+
+    <script>
+        // Define pieces of information about you
+        const info = [
+            "제 이름은 김소의입니다.",
+            "고촌고등학교에 재학 중 입니다.",
+            "1학년 8반입니다.",
+            "취미로 컴퓨터게임을 합니다.",
+            "여러 가수의 노래를 듣는것을 즐깁니다.",
+            "어른이 되면 만두가게를 차리고 싶습니다.",
+            
+            // Add more pieces of information as desired
+        ];
+
+        // Function to randomly select a piece of information
+        function getRandomInfo() {
+            return info[Math.floor(Math.random() * info.length)];
+        }
+
+        // Function to play the game
+        function play(userChoice) {
+            const computerChoice = ['바위', '보', '가위'][Math.floor(Math.random() * 3)];
+
+            if (userChoice === computerChoice) {
+                document.getElementById('result').innerText = "하하 비겼구만!!";
+            } else if ((userChoice === '바위' && computerChoice === '가위') ||
+                       (userChoice === '보' && computerChoice === '바위') ||
+                       (userChoice === '가위' && computerChoice === '보')) {
+                const newInfo = getRandomInfo();
+                document.getElementById('result').innerText = `승리! 으악 내 정보!! ${newInfo}`;
+            } else {
+                document.getElementById('result').innerText = "패배! 분발하세요.";
+            }
+        }
+    </script>
+</body>
+</html>
